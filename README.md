@@ -29,6 +29,8 @@ Once downloaded, use 2-resize-images.ipynb to resize the raw images to a max dim
 
 ### Encoding the images
 
+Now that we have the images preprocessed, we'll load the CLIP model and encode in batches of 32. The results are stored in a hdf5 file for future use (insertion) along with the filename.
+
 ## Vector Database
 
 ### Setting up Milvus
