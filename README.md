@@ -35,7 +35,7 @@ Now that we have the images preprocessed, we'll load the CLIP model and encode i
 
 ### Setting up Milvus
 
-I highly recommend you enable authorization for specify a location to store volumes Milvus (ideally an NVME for performance purposes). This is done by downloading and configuring the following:
+I highly recommend you enable Security and specify a location where data volumes are stored (ideally an NVME for performance purposes). This is done by downloading and configuring the following:
 
 - milvus.yaml
     - Change boolean flag for authorizationEnabled from `false` to `true` on line 466 (e.g., `authorizationEnabled: true`).
@@ -78,3 +78,7 @@ At this point, you should be able to run the application. If you created a user 
 `streamlit run --server.port 8081 --server.maxUploadSize 10 --browser.gatherUsageStats false streamlit-milvus.py`
 
 Feel free to change the port or upload limit. `--browser.gatherUsageStats false` simply deactivates telemetry.
+
+## Contact
+
+If you have any questions, please feel free to contact me at jkkphys@gmail.com.
