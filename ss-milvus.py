@@ -10,15 +10,15 @@ import os
 @st.cache_data
 def get_creds():
     creds = {}
-    creds['host'] = '192.168.68.103'
-    creds['port'] = 19530
+    creds['host'] = os.environ['MILVUS_HOST']
+    creds['port'] = os.environ['MILVUS_PORT']
     creds['user'] = os.environ['MILVUS_USER']
     creds['password'] = os.environ['MILVUS_PASS']
     return creds
 
 creds = get_creds()
 connections.connect(**creds)
-collection = Collection('unsplash500k')
+collection = Collection('unsplash_lite')
 collection.load()
 
 @st.cache_resource
@@ -50,7 +50,7 @@ def get_top_k(query_vector, k=3, collection=collection):
     search_param = {
         "data": query_vector,
         "anns_field":"image",
-        "param": {'metric_type': "IP", "params":{"nprobe": k}, "offset": 0},
+        "param": {'metric_type': "COSINE", "params":{"nprobe": k}, "offset": 0},
         "limit": k,
         "output_fields": ['fname', 'photo_description']
     }
