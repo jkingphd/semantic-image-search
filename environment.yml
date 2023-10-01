@@ -1,0 +1,16 @@
+name: vectordb
+dependencies:
+  - python=3.9
+  - jupyter
+  - pandas
+  - numpy
+  - pip
+  - pip:
+    - torch
+    - torchvision
+    - torchaudio
+    - open_clip_torch
+    - streamlit
+    - pymilvus
+    - h5py
+    - tqdm
