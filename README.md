@@ -59,16 +59,20 @@ Once installed, connect to localhost:8001 and login to the root account (default
 
 ### Create a Collection
 
-This can be done from the Attu GUI or programatically. An example of the latter is found in 4-create-collection.ipynb.
+This can be done from Attu or programatically. An example of the latter is found in 4-create-collection.ipynb.
 
 ### Insert data
 
+Again, this can be done from Attu, but loading anything of substance (i.e., >100MB) should be done programatically, as shown in 5-insert-data.ipynb.
+
 ### Create user
+
+Finally, we'll make a new role and user for the Streamlit application, to limit it to read-only access to the Collection we created. This is shown in 6-create-user.ipynb.
 
 ## Streamlit
 
 At this point, you should be able to run the application. If you created a user for this application (highly suggested), set the environmental variables in the shell before running the below command or [modify the secrets file in your local streamlit install](https://docs.streamlit.io/library/advanced-features/secrets-management).
 
-`streamlit run --server.port 8081 --server.maxUploadSize 10 --browser.gatherUsageStats false ss-milvus.py`
+`streamlit run --server.port 8081 --server.maxUploadSize 10 --browser.gatherUsageStats false streamlit-milvus.py`
 
 Feel free to change the port or upload limit. `--browser.gatherUsageStats false` simply deactivates telemetry.
