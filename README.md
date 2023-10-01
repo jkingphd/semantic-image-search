@@ -33,7 +33,37 @@ Once downloaded, use 2-resize-images.ipynb to resize the raw images to a max dim
 
 ### Setting up Milvus
 
+I highly recommend you enable authorization for specify a location to store volumes Milvus (ideally an NVME for performance purposes). This is done by downloading and configuring the following:
+
+- milvus.yaml
+    - Change boolean flag for authorizationEnabled from `false` to `true` on line 466 (e.g., `authorizationEnabled: true`).
+- docker-compose.yml
+    - Change the base path on line 47 from DOCKER_VOLUME_REPOSITY to your desired location on disk (e.g., `- $mnt/data/:/var/lib/milvus`).
+    - Add a volume entry below line 47 pointing to the milvus.yml file above (e.g., `/path/to/file/milvus.yaml:/milvus/configs/milvus.yaml`).
+
+Once configured, start Milvus with the following command:
+
+`docker compose up -d`
+
+The containers should download and the service should start running automatically. Further details are available in the Milvus documentation:
+- [Install Milvus - Milvus Standalone](https://milvus.io/docs/install_standalone-docker.md)
+- [Security - Enable Authorization](https://milvus.io/docs/authenticate.md)
+
 ### Setting up Attu (optional)
+
+Milvus can be managed from the command line, but I suggest installing the GUI manager, [Attu](https://github.com/zilliztech/attu). Attu is installed via docker:
+
+`docker run -p 8001:3000 --restart=always -e MILVUS_URL=<Milvus Server IP>:19530 zilliz/attu:v2.3.1`
+
+Once installed, connect to localhost:8001 and login to the root account (default password is Milvus). **Immediately change the password.**
+
+### Create a Collection
+
+This can be done from the Attu GUI or programatically. An example of the latter is found in 4-create-collection.ipynb.
+
+### Insert data
+
+### Create user
 
 ## Streamlit
 
